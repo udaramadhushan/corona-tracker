@@ -4,36 +4,69 @@ public class Stats {
 	
 	
 		
-		private String confirmedCases;
-		private int deaths;
-		private int recovered;
-		private int suspected;
-		public String getConfirmedCases() {
-			return confirmedCases;
-		}
-		public void setConfirmedCases(String confirmedCases) {
-			this.confirmedCases = confirmedCases;
-		}
-		public int getDeaths() {
-			return deaths;
-		}
-		public void setDeaths(int deaths) {
-			this.deaths = deaths;
-		}
-		public int getRecovered() {
-			return recovered;
-		}
-		public void setRecovered(int recovered) {
-			this.recovered = recovered;
-		}
-		public int getSuspected() {
-			return suspected;
-		}
-		public void setSuspected(int suspected) {
-			this.suspected = suspected;
-		}
-		
-		
+	private String confirmedLocal;
+	private String confirmedGlobal;
+	private String activeLocal;
+
+	private String dailyLocal;
+	
+	private String deathsLocal;
+	
+	
+	private String dailyGlobal;
+	private String deathsGlobal;
+	
+	public String getConfirmedLocal() {
+		return confirmedLocal;
+	}
+	public void setConfirmedLocal(String confirmedLocal) {
+		this.confirmedLocal = confirmedLocal;
+	}
+	public String getConfirmedGlobal() {
+		return confirmedGlobal;
+	}
+	public void setConfirmedGlobal(String confirmedGlobal) {
+		this.confirmedGlobal = confirmedGlobal;
+	}
+	public String getActiveLocal() {
+		return activeLocal;
+	}
+	public void setActiveLocal(String activeLocal) {
+		this.activeLocal = activeLocal;
+	}
+
+	@Override
+	public String toString() {
+		return "Stats [confirmedLocal=" + confirmedLocal + ", confirmedGlobal=" + confirmedGlobal + ", activeLocal="
+				+ activeLocal + ", dailyLocal=" + dailyLocal + ", dailyGlobal=" + dailyGlobal + ", deathsLocal="
+				+ deathsLocal + ", deathsGlobal=" + deathsGlobal + "]";
+	}
+	public String getDailyLocal() {
+		return dailyLocal;
+	}
+	public void setDailyLocal(String dailyLocal) {
+		this.dailyLocal = dailyLocal;
+	}
+	public String getDailyGlobal() {
+		return dailyGlobal;
+	}
+	public void setDailyGlobal(String dailyGlobal) {
+		this.dailyGlobal = dailyGlobal;
+	}
+	public String getDeathsLocal() {
+		return deathsLocal;
+	}
+	public void setDeathsLocal(String deathsLocal) {
+		this.deathsLocal = deathsLocal;
+	}
+	public String getDeathsGlobal() {
+		return deathsGlobal;
+	}
+	public void setDeathsGlobal(String deathsGlobal) {
+		this.deathsGlobal = deathsGlobal;
+	}
+	
+	
 	
 		
 }
