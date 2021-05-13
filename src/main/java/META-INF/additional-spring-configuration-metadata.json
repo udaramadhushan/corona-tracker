@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "web.url1",
+  "type": "java.lang.String",
+  "description": "web scraping Url"
+}]}

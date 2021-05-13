@@ -17,7 +17,14 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model){
 		
-		model.addAttribute("stats", coronaVirusDataService.getNewStats().getConfirmedLocal());
+		model.addAttribute("confirmedGlobal",coronaVirusDataService.getNewStats().getConfirmedGlobal());
+		model.addAttribute("confirmedLocal", coronaVirusDataService.getNewStats().getConfirmedLocal());
+		model.addAttribute("activeLocal", coronaVirusDataService.getNewStats().getActiveLocal());
+		model.addAttribute("dailyLocal", coronaVirusDataService.getNewStats().getDailyLocal());
+		model.addAttribute("deathsLocal", coronaVirusDataService.getNewStats().getDeathsLocal());
+		model.addAttribute("deathsGlobal", coronaVirusDataService.getNewStats().getDeathsGlobal());
+		
+		
 	
 		
 		return "Home";
