@@ -86,7 +86,7 @@ public class CoronavirusDataService {
 		newStats.setDeathsGlobal(deathsGlobal);
 		newStats.setDeathsLocal(deathsLocal);
 
-
+		new EmailService().sendEmail("udaram188@gmail.com");
 
 	}
 
