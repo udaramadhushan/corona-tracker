@@ -8,16 +8,17 @@ import javax.annotation.PostConstruct;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.corona.tracker.models.Stats;
+import com.corona.tracker.model.Stats;
 
 
 @Service
+
 public class CoronavirusDataService {
 
 	@Value(value = "${web.url1}")
@@ -86,7 +87,7 @@ public class CoronavirusDataService {
 		newStats.setDeathsGlobal(deathsGlobal);
 		newStats.setDeathsLocal(deathsLocal);
 
-		//new EmailService().sendEmail("udaram188@gmail.com");
+	
 
 	}
 

@@ -1,4 +1,4 @@
-package com.corona.tracker.models;
+package com.corona.tracker.model;
 
 public class Stats {
 	
