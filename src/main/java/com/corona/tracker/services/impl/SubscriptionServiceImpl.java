@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.corona.tracker.exceptions.SubscriptionServiceException;
 import com.corona.tracker.io.entity.SubscriptionEntity;
 import com.corona.tracker.io.repositories.SubscriptionRepository;
 import com.corona.tracker.services.CoronavirusDataService;
@@ -30,7 +31,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	
 	@Override
 	public SubscriptionDto createSubscription(SubscriptionDto sub) {
-		//if(subscriptionRepository.findByEmail(sub.getEmail()) != null) 
+		if(subscriptionRepository.findByEmail(sub.getEmail()) != null) throw new SubscriptionServiceException("record already exsists");
 		
 			
 			ModelMapper modelmapper = new ModelMapper();
