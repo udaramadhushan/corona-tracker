@@ -24,12 +24,13 @@
 		<p class=" row fs-3 text-center text-light m-4">we provide you with latest updates of Covid-19 Statistics. Please enter your name and email to subscribe for our daily report</p>
 	
 	<div class="row justify-content-center">
-	<form class="g-3 col-6 m-4 p-3"  method="post">
+	<form class="g-3 col-6 m-4 p-3"  th:action="@{/Unsubscribe}"  method="post">
 		<div class="row justify-content-center">
 			<p class="text-danger text-center"> Click the button below to unsubscribe from the service<p>
 		</div>
 			
 		<div class="row justify-content-center mt-2">
+		<input type="text" class="form-control m-1" placeholder="Your Name" th:name="subId" aria-label="Username" >
 			<button type="submit" class="btn btn-danger col-12 col-sm-4 ">Unsubscribe</button>
 		</div>
 		</form>

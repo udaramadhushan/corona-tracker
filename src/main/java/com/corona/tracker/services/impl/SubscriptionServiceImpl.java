@@ -2,6 +2,7 @@ package com.corona.tracker.services.impl;
 import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.corona.tracker.exceptions.SubscriptionServiceException;
@@ -12,6 +13,8 @@ import com.corona.tracker.services.SubscriptionService;
 import com.corona.tracker.shared.EmailService;
 import com.corona.tracker.shared.Utils;
 import com.corona.tracker.shared.dto.SubscriptionDto;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -30,7 +33,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	
 	
 	@Override
-	public SubscriptionDto createSubscription(SubscriptionDto sub) {
+	public void createSubscription(SubscriptionDto sub) {
 		if(subscriptionRepository.findByEmail(sub.getEmail()) != null) throw new SubscriptionServiceException("record already exsists");
 		
 			
@@ -40,14 +43,59 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 			String subId = utils.generateUserId(30);
 			subscriptionEntity.setSubId(subId);
 			
-			SubscriptionEntity storedSubscription = subscriptionRepository.save(subscriptionEntity);
+			subscriptionRepository.save(subscriptionEntity);
 			
-			SubscriptionDto returnValue = modelmapper.map(storedSubscription,SubscriptionDto.class );
+		
 			
 			System.out.println("user created "+ sub.getName());
-			emailService.sendWelcomeEmail(sub.getEmail(),coronaData);
-			return returnValue;
+			//emailService.sendWelcomeEmail(sub.getEmail(),coronaData);
+		
 			
 	}
+	
+	@Override
+	public void unsubscribe(String subId) {
+			
+		
+		SubscriptionEntity subscriptionEntity = subscriptionRepository.findBySubId(subId);
+		
+		subscriptionEntity.setSubscribed(false);
+	
+	
+		subscriptionRepository.save(subscriptionEntity);
+		
+		
+	}
+	
+	@Scheduled(fixedRate = 5000)
+	public List<String> sendEmails(){
+		List<String> emailList= new ArrayList<>();
+		
+		
+		
+	
+		List<SubscriptionEntity> subscribers=   subscriptionRepository.findAllBySubscribed(true);
+	
+		
+		for(SubscriptionEntity  sub:subscribers) {
+			
+			emailList.add(sub.getEmail());
+		}
+		
+	
+				
+		for(String email:emailList) {
+				
+				System.out.println(email);
+		}
+
+	
+		
+		
+		return emailList;
+	}
+
+	
+	
 
 }

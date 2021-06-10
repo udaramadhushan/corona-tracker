@@ -28,6 +28,17 @@ public class SubscriptionEntity implements Serializable{
 	
 	@Column(length=100 )
 	private String name = "Subscriber";
+	
+	@Column
+	Boolean subscribed = true;
+
+	public Boolean getSubscribed() {
+		return subscribed;
+	}
+
+	public void setSubscribed(Boolean subscribed) {
+		this.subscribed = subscribed;
+	}
 
 	public String getSubId() {
 		return subId;
