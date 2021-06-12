@@ -32,11 +32,13 @@ public class HomeController {
 	@Autowired
 	SubscriptionService subscriptionService;
 	
+	 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("E yyyy.MM.dd ");  
+	 LocalDateTime now = LocalDateTime.now();  
+	
 	@GetMapping("/")
 	public String home(Model model){
 	
-		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd ");  
-		 LocalDateTime now = LocalDateTime.now();  
+		
 		model.addAttribute("confirmedGlobal",coronaVirusDataService.getNewStats().getConfirmedGlobal());
 		model.addAttribute("confirmedLocal", coronaVirusDataService.getNewStats().getConfirmedLocal());
 		model.addAttribute("activeLocal", coronaVirusDataService.getNewStats().getActiveLocal());
@@ -53,10 +55,10 @@ public class HomeController {
 	}
 	
 	
-	@GetMapping("/Unsubscribe")
-	public String Unsubscribe(Model model){
-	
-		 model.addAttribute("subId", "");
+	@GetMapping("/Unsubscribe/{subId}")
+	public String Unsubscribe(Model model, @PathVariable String subId){
+		model.addAttribute("currentDate", dtf.format(now));
+		 model.addAttribute("subId", subId);
 	
 		return "Unsubscribe";
 	}

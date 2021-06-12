@@ -30,8 +30,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	@Autowired
 	EmailService emailService;
 	
-	
-	
+
 	@Override
 	public void createSubscription(SubscriptionDto sub) {
 		if(subscriptionRepository.findByEmail(sub.getEmail()) != null) throw new SubscriptionServiceException("record already exsists");
@@ -45,10 +44,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 			
 			subscriptionRepository.save(subscriptionEntity);
 			
-		
 			
-			System.out.println("user created "+ sub.getName());
-			//emailService.sendWelcomeEmail(sub.getEmail(),coronaData);
+			
+			
+			
+			emailService.sendWelcomeEmail(sub.getEmail(),coronaData);
 		
 			
 	}
@@ -67,7 +67,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		
 	}
 	
-	@Scheduled(fixedRate = 5000)
+	//@Scheduled(fixedRate = 5000)
 	public List<String> sendEmails(){
 		List<String> emailList= new ArrayList<>();
 		
@@ -77,16 +77,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		List<SubscriptionEntity> subscribers=   subscriptionRepository.findAllBySubscribed(true);
 	
 		
-		for(SubscriptionEntity  sub:subscribers) {
-			
-			emailList.add(sub.getEmail());
-		}
+	
 		
 	
 				
 		for(String email:emailList) {
 				
-				System.out.println(email);
+				
 		}
 
 	

@@ -34,9 +34,8 @@ public class EmailService {
 		final String TEXTBODY = "Hello " ;
 		
 		
-		public void sendWelcomeEmail(String email,CoronavirusDataService coronaData) {
-			
-			final String STATS = "<table style=\"width:100%\">\r\n" + 
+	private String createDataTable(CoronavirusDataService coronaData) {
+			String statsTable = "<table style=\"width:100%\">\r\n" + 
 					"  <tr>\r\n" + 
 					"    <th>Description</th>\r\n" + 
 					"    <th>Stats</th>\r\n" + 
@@ -65,12 +64,18 @@ public class EmailService {
 
 					"  </tr>\r\n" +
 					"</table>";
+			return statsTable;
+		}
+		
+		public void sendWelcomeEmail(String email,CoronavirusDataService coronaData) {
+			String stats = this.createDataTable(coronaData);
+			
 			
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
 					.build();
 	 
-			String htmlBodyWithToken = HTMLBODY + WELCOME_TEXT+'\n'+ STATS;
+			String htmlBodyWithToken = HTMLBODY + WELCOME_TEXT+'\n'+ stats;
 			String textBodyWithToken = TEXTBODY;
 
 			SendEmailRequest request = new SendEmailRequest()
@@ -87,41 +92,13 @@ public class EmailService {
 		}
 		
 		public void sendDailyReport(String email, CoronavirusDataService coronaData) {
-			final String STATS = "<table style=\"width:100%\">\r\n" + 
-					"  <tr>\r\n" + 
-					"    <th>Description</th>\r\n" + 
-					"    <th>Stats</th>\r\n" + 
-					"  </tr>\r\n" +  
-					"  <tr>\r\n" + 
-					"    <td>Confirmed Cases (WORLD)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getConfirmedGlobal()+"</td>\r\n" + 
-					"  </tr>\r\n" + 
-					
-					"  <tr>\r\n" + 
-					"    <td>Confirmed Cases (Sri Lanka)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getConfirmedLocal()+"</td>\r\n"+ 
-					"  </tr>\r\n" +
-					"  <tr>\r\n" + 
-					"    <td>Active Cases (Sri Lanka)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getActiveLocal()+"</td>\r\n"+ 
-					"  </tr>\r\n" +"  <tr>\r\n" + 
-					"    <td>Daily Cases (Sri Lanka)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getDailyLocal()+"</td>\r\n"+ 
-					"  </tr>\r\n" +"  <tr>\r\n" + 
-					"    <td>Deaths(World)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getDeathsGlobal()+"</td>\r\n"+ 
-					"  </tr>\r\n" +"  <tr>\r\n" + 
-					"    <td>Deaths(Sri Lanka)</td>\r\n" + 
-					"    <td>"+coronaData.getNewStats().getDeathsLocal()+"</td>\r\n"+ 
-
-					"  </tr>\r\n" +
-					"</table>";
-			
+		
+			String stats = this.createDataTable(coronaData);
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
 					.build();
 	 
-			String htmlBodyWithToken = HTMLBODY + DAILY_REPORT +'\n'+ STATS;
+			String htmlBodyWithToken = HTMLBODY + DAILY_REPORT +'\n'+ stats;
 			String textBodyWithToken = TEXTBODY;
 
 			SendEmailRequest request = new SendEmailRequest()
@@ -134,7 +111,7 @@ public class EmailService {
 
 			client.sendEmail(request);
 
-			System.out.println("Email sent!");
+
 			
 		}
 		
