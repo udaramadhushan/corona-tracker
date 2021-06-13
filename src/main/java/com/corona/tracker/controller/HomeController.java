@@ -63,7 +63,7 @@ public class HomeController {
 		return "Unsubscribe";
 	}
 	
-	@PostMapping("/Unsubscribe")
+	@PostMapping("/Unsubscribe/**")
 	public String UnsubsribeUser(@RequestParam(value = "subId")String subId,Model model) {
 	
 		subscriptionService.unsubscribe(subId);

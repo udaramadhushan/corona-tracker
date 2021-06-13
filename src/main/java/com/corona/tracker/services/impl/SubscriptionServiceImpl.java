@@ -48,7 +48,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 			
 			
 			
-			emailService.sendWelcomeEmail(sub.getEmail(),coronaData);
+			emailService.sendWelcomeEmail(subscriptionEntity.getEmail(),subscriptionEntity.getSubId(),coronaData);
 		
 			
 	}

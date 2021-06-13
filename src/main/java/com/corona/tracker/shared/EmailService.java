@@ -67,15 +67,15 @@ public class EmailService {
 			return statsTable;
 		}
 		
-		public void sendWelcomeEmail(String email,CoronavirusDataService coronaData) {
+		public void sendWelcomeEmail(String email,String subId,CoronavirusDataService coronaData) {
 			String stats = this.createDataTable(coronaData);
 			
-			
+			String unsubscibe = "<p> click <a href='http://localhost:8080/Unsubscribe/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
 					.build();
 	 
-			String htmlBodyWithToken = HTMLBODY + WELCOME_TEXT+'\n'+ stats;
+			String htmlBodyWithToken = HTMLBODY + DAILY_REPORT +'\n'+ stats+'\n'+ unsubscibe;
 			String textBodyWithToken = TEXTBODY;
 
 			SendEmailRequest request = new SendEmailRequest()
@@ -91,14 +91,17 @@ public class EmailService {
 			System.out.println("Email sent!");
 		}
 		
-		public void sendDailyReport(String email, CoronavirusDataService coronaData) {
+		public void sendDailyReport(String email,String subId, CoronavirusDataService coronaData) {
 		
 			String stats = this.createDataTable(coronaData);
+			
+			String unsubscibe = "<p> click <a href='http://localhost:8080/Unsubscribe/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
+					
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
 					.build();
 	 
-			String htmlBodyWithToken = HTMLBODY + DAILY_REPORT +'\n'+ stats;
+			String htmlBodyWithToken = HTMLBODY + DAILY_REPORT +'\n'+ stats+'\n'+ unsubscibe;
 			String textBodyWithToken = TEXTBODY;
 
 			SendEmailRequest request = new SendEmailRequest()
