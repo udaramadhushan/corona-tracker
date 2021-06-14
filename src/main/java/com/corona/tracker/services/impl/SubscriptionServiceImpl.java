@@ -33,19 +33,28 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Override
 	public void createSubscription(SubscriptionDto sub) {
-		if(subscriptionRepository.findByEmail(sub.getEmail()) != null) throw new SubscriptionServiceException("record already exsists");
 		
+		SubscriptionEntity subscriptionEntity = new SubscriptionEntity();
+		
+		if(subscriptionRepository.findByEmail(sub.getEmail()) != null) {
+			
+			subscriptionEntity = subscriptionRepository.findByEmail(sub.getEmail());
+			subscriptionEntity.setSubscribed(true);
+			subscriptionEntity.setName(sub.getName());
+			
+		} else {
+			
 			
 			ModelMapper modelmapper = new ModelMapper();
-			SubscriptionEntity subscriptionEntity = modelmapper.map(sub, SubscriptionEntity.class);
+			subscriptionEntity = modelmapper.map(sub, SubscriptionEntity.class);
 			
 			String subId = utils.generateUserId(30);
 			subscriptionEntity.setSubId(subId);
 			
-			subscriptionRepository.save(subscriptionEntity);
+		
 			
-			
-			
+		}	
+		subscriptionRepository.save(subscriptionEntity);
 			
 			
 			emailService.sendWelcomeEmail(subscriptionEntity.getEmail(),subscriptionEntity.getSubId(),coronaData);
@@ -67,29 +76,26 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		
 	}
 	
-	//@Scheduled(fixedRate = 5000)
-	public List<String> sendEmails(){
-		List<String> emailList= new ArrayList<>();
+	@Scheduled(fixedRate = 86400000)
+	public void sendEmails(){
+
 		
 		
 		
 	
-		List<SubscriptionEntity> subscribers=   subscriptionRepository.findAllBySubscribed(true);
+		List<SubscriptionEntity> subscribersList=   subscriptionRepository.findAllBySubscribed(true);
 	
-		
-	
-		
 	
 				
-		for(String email:emailList) {
+		for(SubscriptionEntity subscriber:subscribersList) {
 				
-				
+			emailService.sendDailyReport(subscriber.getEmail(),subscriber.getSubId(), coronaData);
 		}
 
 	
 		
 		
-		return emailList;
+		
 	}
 
 	
