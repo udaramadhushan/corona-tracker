@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.corona.tracker.exceptions.SubscriptionServiceException;
-import com.corona.tracker.io.entity.SubscriptionEntity;
+
 import com.corona.tracker.model.SubscriptionRequestModel;
 import com.corona.tracker.services.CoronavirusDataService;
 import com.corona.tracker.services.SubscriptionService;
-import com.corona.tracker.shared.EmailService;
+
 import com.corona.tracker.shared.dto.SubscriptionDto;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.time.LocalDateTime;    
 @Controller
 

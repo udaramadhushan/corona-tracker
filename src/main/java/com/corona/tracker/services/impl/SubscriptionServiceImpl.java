@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.corona.tracker.exceptions.SubscriptionServiceException;
+
 import com.corona.tracker.io.entity.SubscriptionEntity;
 import com.corona.tracker.io.repositories.SubscriptionRepository;
 import com.corona.tracker.services.CoronavirusDataService;
@@ -13,7 +13,7 @@ import com.corona.tracker.services.SubscriptionService;
 import com.corona.tracker.shared.EmailService;
 import com.corona.tracker.shared.Utils;
 import com.corona.tracker.shared.dto.SubscriptionDto;
-import java.util.ArrayList;
+
 import java.util.List;
 
 
