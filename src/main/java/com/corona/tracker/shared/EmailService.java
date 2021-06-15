@@ -24,7 +24,7 @@ public class EmailService {
 		
 		 
 		
-		final String FROM = "dashudaram@gmail.com";
+		final String FROM = "covid.tracker.service@gmail.com";
 		
 		final String SUBJECT_Status = "Corona Status Update " + java.time.LocalDate.now();
 		
