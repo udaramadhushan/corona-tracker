@@ -111,6 +111,13 @@
     <configuration>
         <source>1.8</source>
       <target>1.8</target>
+       <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            
+            <mainClass>com.corona.tracker.CoronaTrackerApplication</mainClass>
+          </manifest>
+        </archive>
     </configuration>
 </plugin>
 		</plugins>
