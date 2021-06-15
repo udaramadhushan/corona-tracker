@@ -95,7 +95,7 @@ public class EmailService {
 		
 			String stats = this.createDataTable(coronaData);
 			
-			String unsubscibe = "<p> click <a href='http://localhost:8080/Unsubscribe/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
+			String unsubscibe = "<p> click <a href='https://aqueous-bayou-96161.herokuapp.com/Unsubscribe/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
 					
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
