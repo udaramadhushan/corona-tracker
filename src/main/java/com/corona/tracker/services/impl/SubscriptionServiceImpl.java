@@ -31,7 +31,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	EmailService emailService;
 	
 
-	@Override
+	
 	public void createSubscription(SubscriptionDto sub) {
 		
 		SubscriptionEntity subscriptionEntity = new SubscriptionEntity();
@@ -62,7 +62,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 			
 	}
 	
-	@Override
+	
 	public void unsubscribe(String subId) {
 			
 		
