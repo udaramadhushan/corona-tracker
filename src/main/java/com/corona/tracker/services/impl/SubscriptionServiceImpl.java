@@ -76,7 +76,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 		
 	}
 	
-	@Scheduled(fixedRate = 86400000)
+	@Scheduled(cron = "* * 1 * * *")
 	public void sendEmails(){
 
 		
