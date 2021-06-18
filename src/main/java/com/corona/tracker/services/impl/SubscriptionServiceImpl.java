@@ -89,7 +89,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 				
 		for(SubscriptionEntity subscriber:subscribersList) {
 				
-			emailService.sendDailyReport(subscriber.getEmail(),subscriber.getSubId(), coronaData);
+			//emailService.sendDailyReport(subscriber.getEmail(),subscriber.getSubId(), coronaData);
 		}
 
 	
