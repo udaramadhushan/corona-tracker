@@ -26,6 +26,9 @@ public class CoronavirusDataServiceImpl implements CoronavirusDataService{
 		@Value(value = "${web.url2}")
 		String webUrl2;
 		
+		@Value(value = "${web.url3}")
+		String webUrl3;
+		
 		
 		
 		
@@ -40,40 +43,27 @@ public class CoronavirusDataServiceImpl implements CoronavirusDataService{
 			
 			Document webDoc = Jsoup.connect(webUrl1).get();
 			Document webDoc2 = Jsoup.connect(webUrl2).get(); 
+			Document webDoc3 = Jsoup.connect(webUrl3).get();
 			
 			
 
-			String confirmedLocal = 	NumberFormat.getIntegerInstance()
-					.format(Integer.parseInt(webDoc.select("p:contains(Total Confirmed Cases)")
-							.first().parent()
-							.selectFirst(".local").select("h4").first().attr("data-counter")));
+			String confirmedLocal = webDoc3.select("#maincounter-wrap").eq(0).select("span").text();
 
-			String confirmedGlobal = NumberFormat.getIntegerInstance()
-					.format(Integer.parseInt(webDoc.select("p:contains(Total Confirmed Cases)")
-							.first().parent().selectFirst(".global")
-							.select("h4").first().attr("data-counter")));
-			
-			
-			String activeLocal = 	NumberFormat.getIntegerInstance()
-					.format(Integer.parseInt(webDoc.select("p:contains(Active Cases)")
-							.first().parent()
-							.selectFirst(".local").select("h4").first().attr("data-counter")));
+			String confirmedGlobal = webDoc.select("p:contains(Total Confirmed Cases)")
+					.first().parent().selectFirst(".global")
+					.select("h4").first().attr("data-counter");
+
+			String activeLocal =  webDoc3.select("#usa_table_countries_today").select("tbody").eq(0).select("tr").eq(0).select("td").eq(7).text();
 					
-			String dailyLocal = NumberFormat.getIntegerInstance()
-					.format(Integer.parseInt(webDoc.select("p:contains(Daily New Cases)")
-							.first().parent()
-							.selectFirst(".local").select("h4").first().attr("data-counter")));
+			String dailyLocal = webDoc3.select("#maincounter-wrap").eq(2).select("span").text();
 
-			String deathsLocal = NumberFormat.getIntegerInstance()
-					.format(Integer.parseInt(webDoc.select("p:contains(Deaths)")
-							.first().parent()
-							.selectFirst(".local").select("h4").first().attr("data-counter")));
+			String deathsLocal =  webDoc3.select("#maincounter-wrap").eq(1).select("span").text();
 
 
 			String deathsGlobal =  webDoc2.select("#maincounter-wrap").eq(1).select("span").text();
 
 			
-			
+			//*[@id="usa_table_countries_today"]/tbody[1]/tr[1]/td[8]
 			
 			
 			newStats.setConfirmedGlobal(confirmedGlobal);

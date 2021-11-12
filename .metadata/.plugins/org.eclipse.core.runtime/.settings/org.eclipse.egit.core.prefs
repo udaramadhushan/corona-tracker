@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=E\:\\project\\CORONA\\corona-tracker\\.git;E\:\\project\\ImageRepository\\.git;
-GitRepositoriesView.GitDirectories.relative=.git;E\:\\project\\ImageRepository\\.git;
+GitRepositoriesView.GitDirectories=E\:\\project\\CORONA\\corona-tracker\\.git;E\:\\project\\CORONA\\corona-tracker-git\\corona-tracker\\.git;E\:\\project\\ImageRepository\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;E\:\\project\\CORONA\\corona-tracker-git\\corona-tracker\\.git;E\:\\project\\ImageRepository\\.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

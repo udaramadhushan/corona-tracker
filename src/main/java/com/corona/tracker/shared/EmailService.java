@@ -46,20 +46,20 @@ public class EmailService {
 					"  </tr>\r\n" + 
 					
 					"  <tr>\r\n" + 
-					"    <td>Confirmed Cases (Sri Lanka)</td>\r\n" + 
+					"    <td>Confirmed Cases (United States)</td>\r\n" + 
 					"    <td>"+coronaData.getNewStats().getConfirmedLocal()+"</td>\r\n"+ 
 					"  </tr>\r\n" +
 					"  <tr>\r\n" + 
-					"    <td>Active Cases (Sri Lanka)</td>\r\n" + 
+					"    <td>Active Cases (United States)</td>\r\n" + 
 					"    <td>"+coronaData.getNewStats().getActiveLocal()+"</td>\r\n"+ 
 					"  </tr>\r\n" +"  <tr>\r\n" + 
-					"    <td>Daily Cases (Sri Lanka)</td>\r\n" + 
+					"    <td>Recovered (United States)</td>\r\n" + 
 					"    <td>"+coronaData.getNewStats().getDailyLocal()+"</td>\r\n"+ 
 					"  </tr>\r\n" +"  <tr>\r\n" + 
 					"    <td>Deaths(World)</td>\r\n" + 
 					"    <td>"+coronaData.getNewStats().getDeathsGlobal()+"</td>\r\n"+ 
 					"  </tr>\r\n" +"  <tr>\r\n" + 
-					"    <td>Deaths(Sri Lanka)</td>\r\n" + 
+					"    <td>Deaths(United States)</td>\r\n" + 
 					"    <td>"+coronaData.getNewStats().getDeathsLocal()+"</td>\r\n"+ 
 
 					"  </tr>\r\n" +
