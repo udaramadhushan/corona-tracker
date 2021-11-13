@@ -88,14 +88,14 @@ public class EmailService {
 
 			client.sendEmail(request);
 
-			System.out.println("Email sent!");
+	
 		}
 		
 		public void sendDailyReport(String email,String subId, CoronavirusDataService coronaData) {
 		
 			String stats = this.createDataTable(coronaData);
 			
-			String unsubscibe = "<p> click <a href='https://aqueous-bayou-96161.herokuapp.com/Unsubscribe/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
+			String unsubscibe = "<p> click <a href='https://corona-tracking-application.herokuapp.com/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
 					
 			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
