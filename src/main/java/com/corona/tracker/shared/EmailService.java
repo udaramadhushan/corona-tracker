@@ -97,7 +97,7 @@ public class EmailService {
 			
 			String unsubscibe = "<p> click <a href='https://corona-tracking-application.herokuapp.com/"+subId+"'>Unsubscribe</a> to stop recieving emails from our service"; 
 					
-			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKMEZAZO653V", "rK/O610IxUqlze8hNcNl23KrEdDamWqO2v/3TPoo");
+			BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIA44Z2MKME4JQV7SVG", "BG2fUsJI66F9ypmrpswPH9qWgGuM8p66JhlZ6QDVZpl");
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).withRegion(Regions.AP_SOUTH_1)
 					.build();
 	 
